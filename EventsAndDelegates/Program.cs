@@ -21,6 +21,17 @@ namespace EventsAndDelegates
             videoEncoder.VideoEncoded += messageService.OnVideoEncoded; 
 
             videoEncoder.EncodeVideo(video);
+
+            //Java way with interface callback - can handle only one at a time
+            var audio = new Audio()
+            {
+                Title = "Audio 101"
+            };
+            
+            IAudioEncoderListener mailListener = new MailService();
+
+            var audioEncoder = new AudioEncoder(mailListener);
+            audioEncoder.EncodeAudio(audio);
         }
     }
 }
